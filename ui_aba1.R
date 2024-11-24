@@ -34,6 +34,6 @@ ui_aba1 <- fluidPage(
       column(4, plotlyOutput(outputId = "barra_deitado"))
     ), #acaba terceira inha
     fluidRow(
-      column(12, dataTableOutput(outputId = "tabela")))
+      column(12, dataTableOutput(outputId = "tabela_naousada")))
   )
 )#acaba o ui

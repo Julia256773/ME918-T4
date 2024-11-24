@@ -8,7 +8,7 @@ library(ggplot2)
 library(reactable)
 library(readr)
 library(lmtest)
-library(car)
+#library(car)
 
 source("dados.R", encoding = "UTF-8")
 # Carregar as partes das abas

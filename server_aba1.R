@@ -66,7 +66,7 @@ server_aba1 = function(input, output, session) {
       theme_bw()
   })
   
-  output$tabela = renderDataTable({
+  output$tabela_naousada = renderDataTable({
     dados %>% 
       filter(Pais == input$pais) %>% 
       select(Nome, Lucro, Custo, Vitorias, Indicacoes, Nota, Votos)
