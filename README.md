@@ -6,7 +6,7 @@
 Este repositório contém arquivos que conjuntamente produzem um dashboard
 através do pacote shiny. O Dashboard contém informações, visualizações e
 testes relacionados à informações de filmes lançados entre os anos
-19XX - 20XX. Dentre as análises há uma aba para análise descritiva e
+1921 - 2024. Dentre as análises há uma aba para análise descritiva e
 exploratória, onde pode-se selecionar o continente e pais do filme,
 assim como o ano em que foi lançado e , em seguida, a variável a qual se
 deseja analisar (indicações a premiações, nota do filme pelo IMDB,
@@ -21,8 +21,9 @@ diferença de nota entre categorias de variáveis categóricas.
 # Conjunto de dados
 
 O conjunto de dados utilizado foi obtido através de webscrapping do site
-XXXXX. O mesmo foi feito por XXXXX utilizando XXXX.XXX Os dados foram
-coletados XX/XX/XXXX.
+<https://www.imdb.com/>. O mesmo foi feito por Nathan Augusto Elias
+utilizando a ferramenta Webscrapper. Os dados foram coletados em
+30/04/2024.
 
 # Arquivos
 

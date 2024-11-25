@@ -1,6 +1,4 @@
 ui_aba2 <- fluidPage(
-  titlePanel("Análises inferenciais de filmes com dados do IMDb"),
-  titlePanel("Análise Inferencial 1"),
   fluidRow(
     column(6,selectInput(inputId = "variavel",
                          label = "Variáveis",
@@ -25,23 +23,5 @@ ui_aba2 <- fluidPage(
            plotlyOutput(outputId = "residuos2")),
     column(4, # Gráfico de QQ-Plot
            plotlyOutput(outputId = "residuos3"))
-  ),
-  titlePanel("Análise Inferencial 2"),
-  fluidRow(
-    column(3,selectInput(inputId = "X",
-                         label = "Escolha a variável de agrupamento:",
-                         choices = c("Classificacao", "Nota_categoria")),
-           selectInput(
-             inputId = "choices",
-             label = "Selecione as variáveis que entrarão no modelo da ANOVA:",
-             choices = c("Indicacoes", "Lucro", "Ano", "Vitorias", "Custo", "Pais", "Classificacao"),
-             multiple = TRUE
-           )),
-    column(9, fluidRow(
-      column(6,  #Boxplto
-             plotOutput(outputId = "boxplot")),
-      column(6,  #Anova
-             tableOutput(outputId = "anova"))
-    ))
   )
 )

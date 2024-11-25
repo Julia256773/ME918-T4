@@ -3,7 +3,7 @@ server_aba2 <- function(input, output, session) {
   output$grafico <- renderPlotly({
     ggplot(dados, aes_string(x = "Nota", y = input$variavel)) + 
       geom_point() + 
-      geom_smooth(method = "lm", color = "red", se = F) +  # Linha de regressão
+      geom_smooth(method = "lm", color = "blue", se = F) +  # Linha de regressão
       theme_bw() + 
       labs(y = "Nota Média", x = input$variavel)  # Rótulos dos eixos
   })
@@ -36,7 +36,7 @@ server_aba2 <- function(input, output, session) {
     modelo <- lm(as.formula(paste("Nota", "~", input$variavel)), data = dados)
     residuos <- modelo$residuals
     p <- ggplot(data = data.frame(residuos), aes(x = residuos)) + 
-      geom_histogram(binwidth = 5, fill = "darkcyan", color = "black", alpha = 0.7) +
+      geom_histogram(binwidth = 1, fill = "lightblue", color = "black", alpha = 0.7) +
       labs(x = "Resíduos", y = "Frequência") +
       theme_bw()
     ggplotly(p)
@@ -49,7 +49,7 @@ server_aba2 <- function(input, output, session) {
     valores_ajustados <- modelo$fitted.values
     p <- ggplot(data = data.frame(valores_ajustados, residuos), aes(x = valores_ajustados, y = residuos)) +
       geom_point(color = "black") +
-      geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+      geom_hline(yintercept = 0, linetype = "dashed", color = "blue") +
       labs(x = "Valores Ajustados", y = "Resíduos") +
       theme_bw()
     
@@ -63,7 +63,7 @@ server_aba2 <- function(input, output, session) {
     
     qq <- ggplot(data = data.frame(residuos), aes(sample = residuos)) +
       stat_qq() +
-      stat_qq_line(color = "red") +  # Adiciona a linha de referência
+      stat_qq_line(color = "blue") +  # Adiciona a linha de referência
       labs(x = "Quantis Teóricos", y = "Quantis Observados") +
       theme_bw()
     
@@ -97,40 +97,14 @@ server_aba2 <- function(input, output, session) {
     p_valor <- round(summary(modelo)$coefficients,5)[2,4]
     
     ifelse(p_valor < 0.05, 
-           paste0("Com base no p-valor obtido ", p_valor, ",rejeitamos a hipótese nula de que o 
+           paste0("Com base no p-valor obtido ", p_valor, ", rejeitamos a hipótese nula de que o 
      coeficiente da regressão é igual a zero, 
      indicando que a variável explicativa tem um 
       efeito significativo sobre a variável dependente."),
-           paste0("Com base no p-valor obtido ", p_valor, ",não rejeitamos a hipótese nula de que o 
+           paste0("Com base no p-valor obtido ", p_valor, ", não rejeitamos a hipótese nula de que o 
      coeficiente da regressão é igual a zero, 
      indicando que a variável explicativa não tem um 
       efeito significativo sobre a variável dependente."))
   })
-  
-  output$boxplot = renderPlot({
-    dados %>% 
-      ggplot(aes_string(x = "Nota", fill = input$X)) + 
-      geom_boxplot() + 
-      theme_bw()
-  })
-  
-  output$anova = renderTable({
-    if (length(input$choices) > 0) {
-      variaveis = paste(input$choices, collapse = " + ")
-      formula = as.formula(paste("Nota ~", variaveis))
-      
-      anova = aov(formula, data = dados)
-      resumo = summary(anova)
-      
-      tabela_anova = as.data.frame(resumo[[1]])  
-      tabela_anova$Termos = rownames(tabela_anova)  
-      rownames(tabela_anova) = NULL  
-      
-      
-      tabela_anova = tabela_anova[, c("Termos", "Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)")]
-      colnames(tabela_anova) = c("Termos", "GL", "Soma Quadrados", "Média Quadrados", "F", "P-valor")
-      
-      tabela_anova } else { "Nenhuma variável selecionada para o modelo ANOVA."}
-  })
-  
+
 }

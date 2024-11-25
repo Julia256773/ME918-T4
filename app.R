@@ -10,20 +10,27 @@ library(readr)
 library(lmtest)
 #library(car)
 library(maps)
+library(rsconnect)
+library(RColorBrewer)
 
 source("dados.R", encoding = "UTF-8")
-# Carregar as partes das abas
+
 source("ui_aba1.R", encoding = "UTF-8")
 source("server_aba1.R", encoding = "UTF-8")  
 source("ui_aba2.R", encoding = "UTF-8") 
-source("server_aba2.R", encoding = "UTF-8") 
+source("server_aba2.R", encoding = "UTF-8")
+source("ui_aba3.R", encoding = "UTF-8") 
+source("server_aba3.R", encoding = "UTF-8")
+
+
 
 # UI principal
 ui <- fluidPage(
-  titlePanel("Dashboard com Múltiplas Abas"),
+  titlePanel("Análise de Filmes com Dados do IMDb"),
   tabsetPanel(
-    tabPanel("Aba 1", ui_aba1),  
-    tabPanel("Aba 2", ui_aba2) 
+    tabPanel("Visão Geral", ui_aba1),  
+    tabPanel("Regressão", ui_aba2),
+    tabPanel("ANOVA", ui_aba3)
   )
 )
 
@@ -31,6 +38,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   server_aba1(input, output, session)
   server_aba2(input, output, session)
+  server_aba3(input, output, session)
 }
 
 # Executa o app
