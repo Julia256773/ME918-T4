@@ -11,7 +11,7 @@ exploratória, onde pode-se selecionar o continente e pais do filme,
 assim como o ano em que foi lançado e , em seguida, a variável a qual se
 deseja analisar (indicações a premiações, nota do filme pelo IMDB,
 número de votos que resultaram a essa nota e número de prêmios ganhos).
-Há também uma segunda aba com o objetivo de analisar variáveis
+Há também duas abas adicionais com o objetivo de analisar variáveis
 influentes já nota do IMBD. Isto é, foram feitas duas análises:
 Regressão de nota com outras variáveis (que pode ser escolhida pelo
 usuário), para analisar o impacto de uma variável numérica na nota final
@@ -36,14 +36,18 @@ suas respectivas funções:
   Nele contém importações e chamadas de pacotes usados na construção do
   dash; a função source() para leitura de arquivos de apoio (com
   codificação para UTF-8).
-- `ui_aba1.R`: Contém estrutura do “user interface” para a aba1: layout,
-  controles de entrada e controles de saída.
-- `ui_aba2.R`: Contém estrutura do “user interface” para a aba2: layout,
-  controles de entrada e controles de saída.
+- `ui_aba1.R`: Contém estrutura do “user interface” para a aba Visão
+  Geral: layout, controles de entrada e controles de saída.
+- `ui_aba2.R`: Contém estrutura do “user interface” para a aba
+  Regressão: layout, controles de entrada e controles de saída.
+- `ui_aba3.R`: Contém estrutura do “user interface” para a aba ANOVA:
+  layout, controles de entrada e controles de saída.
 - `server_aba1.R`: Contém as lógicas das interações com gráficos e
   tabelas da aba 1.
 - `server_aba2.R`: Contém as lógicas das interações com gráficos e
   tabelas da aba 2.
+- `server_aba3.R`: Contém as lógicas das interações com gráficos e
+  tabelas da aba 3.
 
 ## Arquivos suporte:
 
