@@ -15,7 +15,7 @@ Há também duas abas adicionais com o objetivo de analisar variáveis
 influentes já nota do IMBD. Isto é, foram feitas duas análises:
 Regressão de nota com outras variáveis (que pode ser escolhida pelo
 usuário), para analisar o impacto de uma variável numérica na nota final
-dos filmes); e ANOVa de nota com outra variável, para analisar a
+dos filmes); e ANOVA de nota com outra variável, para analisar a
 diferença de nota entre categorias de variáveis categóricas.
 
 # Conjunto de dados
