@@ -3,7 +3,7 @@ server_aba1 = function(input, output, session) {
   
   dados_filtrado = reactive({ 
     if(input$continente == "Todos"){dados}
-    if(input$continente != "Todos"){dados %>% filter(Continente == input$Continente)}
+    if(input$continente != "Todos"){dados %>% filter(Continente == input$continente)}
   })
   observeEvent(dados_filtrado(), {
     choices = unique(dados_filtrado()$Pais)
@@ -38,14 +38,31 @@ server_aba1 = function(input, output, session) {
                           paste("Total de", input$variavel, "por ano")))
   })
   
-  #output$mapa = renderPlotly({ iris
-  #renderPlotly({
-  #ggplot(data = dados2) +
-  #  geom_sf(aes(fill = .data[[input$variavel]]), color = "gray", size = 0.2) +
-  #  scale_fill_continuous(low = "lightblue", high = "blue", name = "Legenda") +
-  #  theme_bw() +
-  #  labs(title = paste0("Distribuição de ", input$variavel, " por país"))
-  #})
+  output$mapa = renderPlotly({
+    if(input$continente == "Todos"){filtro = dados}
+    if(input$continente != "Todos"){filtro = dados %>% filter(Continente == input$continente)}
+    filtro %>% 
+      group_by(Pais, region) %>% 
+      summarise(Lucro = sum(Lucro),
+                Custo = sum(Custo),
+                Vitorias = sum(Vitorias),
+                Indicacoes = sum(Indicacoes),
+                Nota= mean(Nota),
+                .groups = "drop") %>% 
+      merge(world, by = "region", all.x=TRUE) %>% 
+      arrange(group, order) %>% 
+      ggplot(aes(x = long, y = lat, group = group, fill = .data[[input$variavel]])) +
+      geom_polygon(color = "black", size = 0.2) +
+      scale_fill_viridis_c(option = "plasma", name = input$variavel) +
+      theme_bw() +
+      labs(title = "Mapa Temático por Continente",
+           fill = "",
+           x = "",
+           y = "") +
+      theme(axis.text = element_blank(),  
+            axis.ticks = element_blank(),
+            panel.grid = element_blank()) 
+  })
   
   output$barra_deitado = renderPlotly({
     dados %>% 

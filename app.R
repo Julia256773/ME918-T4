@@ -9,6 +9,7 @@ library(reactable)
 library(readr)
 library(lmtest)
 #library(car)
+library(maps)
 
 source("dados.R", encoding = "UTF-8")
 # Carregar as partes das abas

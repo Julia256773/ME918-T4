@@ -15,3 +15,31 @@ dados = mutate(dados, Continente = case_when(
   TRUE ~ "Desconhecido"
 ))
 
+dados <- mutate(dados, region = case_when(
+  Pais == "Alemanha" ~ "Germany",
+  Pais == "França" ~ "France",
+  Pais == "Dinamarca" ~ "Denmark",
+  Pais == "Irlanda" ~ "Ireland",
+  Pais == "Itália" ~ "Italy",
+  Pais == "Polônia" ~ "Poland",
+  Pais == "Reino Unido" ~ "United Kingdom",
+  Pais == "Suécia" ~ "Sweden",
+  Pais == "Argentina" ~ "Argentina",
+  Pais == "Brasil" ~ "Brazil",
+  Pais == "Austrália" ~ "Australia",
+  Pais == "Nova Zelândia" ~ "New Zealand",
+  Pais == "Canadá" ~ "Canada",
+  Pais == "EUA" ~ "USA",
+  Pais == "México" ~ "Mexico",
+  Pais == "Coreia do Sul" ~ "South Korea",
+  Pais == "Índia" ~ "India",
+  Pais == "Irã" ~ "Iran",
+  Pais == "Japão" ~ "Japan",
+  Pais == "Líbano" ~ "Lebanon",
+  Pais == "Turquia" ~ "Turkey",
+  TRUE ~ "Unknown"
+))
+
+world <- map_data("world")
+dados_mapa <- merge(world, dados, by = "region", all.x = TRUE)
+
